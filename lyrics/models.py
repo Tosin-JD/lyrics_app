@@ -15,7 +15,7 @@ class Lyric(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('lyrics:details', args=[str(self.id)])
+        return reverse('lyrics:complete', args=[str(self.slug)])
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -26,7 +26,7 @@ class Lyric(models.Model):
 
 class Chorus(models.Model):
     lyric = models.ForeignKey(Lyric, on_delete=models.CASCADE)
-    chorus = models.CharField(max_length=1024)
+    chorus = models.TextField(max_length=1024)
 
     def __str__(self):
         return self.chorus
@@ -34,7 +34,7 @@ class Chorus(models.Model):
 
 class Verse(models.Model):
     lyric = models.ForeignKey(Lyric, on_delete=models.CASCADE)
-    verse = models.CharField(max_length=1024)
+    verse = models.TextField(max_length=1024)
 
     def __str__(self):
         return self.verse
@@ -42,7 +42,7 @@ class Verse(models.Model):
 
 class Bridge(models.Model):
     lyric = models.ForeignKey(Lyric, on_delete=models.CASCADE)
-    bridge = models.CharField(max_length=1024)
+    bridge = models.TextField(max_length=1024)
     
     def __str__(self):
         return self.bridge

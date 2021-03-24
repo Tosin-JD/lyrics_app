@@ -1,0 +1,165 @@
+{% extends  'base.html' %}
+
+
+{% block content %}
+
+<div class="container">
+    <section>
+        <div class="mt-3">
+            <div class="row">
+                <div class="col-sm-4">
+                    <article class="text-left">
+                        <h2 class="text-center">{{ object }}</h2>
+
+                        {% if object.verse_set.all %}
+                        {% for verse in object.verse_set.all %}
+                                {% if forloop.counter == 1 %}
+                                    <h6 class="text-primary">Verse ({{ forloop.counter }})</h6>
+                                    <p class="text-light">{{ verse|linebreaks }}</p>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+
+                        {% if object.chorus_set.all %}
+                            <h6 class="text-primary">Chorus</h6>
+                            {% for chorus in object.chorus_set.all %}
+                                <p class="text-light">{{ chorus|linebreaks }}</p>
+                            {% endfor %}
+                        {% endif %}
+
+                        {% if object.verse_set.all %}
+                            <h6 class="text-primary">Verse</h6>
+                            {% for verse in object.verse_set.all %}
+                                {% if forloop.counter != 1 %}
+                                    <p class="text-light">{{ verse|linebreaks }}</p>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+
+                        {% if object.bridge_set.all %}
+                            <h6 class="text-primary">Bridge</h6>
+                            {% for bridge in object.bridge_set.all %}
+                                <p class="text-light">{{ bridge|linebreaks }}</p>
+                            {% endfor %}
+                        {% endif %}
+
+
+                        <h5 class="text-secondary text-right"><em>{{ object.song_writer }}</em></h5>
+                    </article>
+                </div>
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                    <div class="bg-dark shadow">
+                        <form method="POST">
+                            {% csrf_token %}
+
+                            <div class="py-3 px-2">
+                                <div class="form-group">
+                                    {{ form.label_tag }}
+                                    {{ form }}
+                                </div>
+
+                                <input type="submit" value="Complete" class="btn btn-light px-3 py-2 y-2">
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="mt-4 bg-secondary">
+                        <div class="py-3 px-2">
+                            <button class="btn btn-light"  data-toggle="modal" data-target="#addVerse">
+                                Add Verse
+                            </button>
+                            <button class="btn btn-primary"  data-toggle="modal" data-target="#addChorus">
+                                Add Chorus
+                            </button>
+                            <button class="btn btn-danger"  data-toggle="modal" data-target="#addBridge">
+                                Add Bridge
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<!-- Modal -->
+
+<div class="modal fade" id="addVerse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Verse</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="" method="POST">
+                <div class="form-group">
+                  <textarea class="form-control mb-1" name="text" id="" cols="20" rows="5"></textarea>
+                  <input class="btn btn-default" type="submit" value="add">
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div class="modal fade" id="addChorus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Chorus</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="" method="POST">
+              <div class="form-group">
+                <textarea class="form-control mb-1" name="text" id="" cols="30" rows="10"></textarea>
+                <input class="btn btn-default" type="submit" value="add">
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <div class="modal fade" id="addBridge" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+{% endblock %}
+

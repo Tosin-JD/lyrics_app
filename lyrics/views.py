@@ -21,9 +21,16 @@ class CreateLyric(generic.CreateView):
     model = Lyric
     template_name = 'lyrics/lyric_form.html'
     form_class = LyricForm
+
+
+class SecondCreateLyric(generic.UpdateView):
+    model = Lyric
+    template_name = 'lyrics/lyric_complete_form.html'
+    form_class = LyricForm
     
 
 class LyricList(generic.ListView):
+    paginate_by = 10
     model = Lyric
     template_name = 'lyrics/lyric_list.html'
 

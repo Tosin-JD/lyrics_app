@@ -6,7 +6,7 @@ from lyrics.models import Lyric
 
 
 # Create your views here.
-class SearchResult(ListView, LoginRequiredMixin):
+class SearchResult(TemplateView):
     """This is the page that displays the
     results that the  users make in the site"""
     model = Lyric

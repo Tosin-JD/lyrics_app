@@ -8,17 +8,43 @@
         <div class="mt-3">
             <div class="row">
                 <div class="col-sm-4">
-                    <article class="text-right">
+                    <article class="text-left">
                         <h2 class="text-center">{{ object }}</h2>
 
                         {% if object.verse_set.all %}
-                            <h4 class="">Chorus</h4>
-                            {% for verse in object.verse_set.all %}
-                                <p class="">{{ verse }}</p>
+                        {% for verse in object.verse_set.all %}
+                                {% if forloop.counter == 1 %}
+                                    <h6 class="text-primary">Verse ({{ forloop.counter }})</h6>
+                                    <p class="text-light">{{ verse|linebreaks }}</p>
+                                {% endif %}
                             {% endfor %}
                         {% endif %}
 
-                        <h5 class="text-left"><em>{{ object.song_writer }}</em></h5>
+                        {% if object.chorus_set.all %}
+                            <h6 class="text-primary">Chorus</h6>
+                            {% for chorus in object.chorus_set.all %}
+                                <p class="text-light">{{ chorus|linebreaks }}</p>
+                            {% endfor %}
+                        {% endif %}
+
+                        {% if object.verse_set.all %}
+                            <h6 class="text-primary">Verse</h6>
+                            {% for verse in object.verse_set.all %}
+                                {% if forloop.counter != 1 %}
+                                    <p class="text-light">{{ verse|linebreaks }}</p>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+
+                        {% if object.bridge_set.all %}
+                            <h6 class="text-primary">Bridge</h6>
+                            {% for bridge in object.bridge_set.all %}
+                                <p class="text-light">{{ bridge|linebreaks }}</p>
+                            {% endfor %}
+                        {% endif %}
+
+
+                        <h5 class="text-secondary text-right"><em>{{ object.song_writer }}</em></h5>
                     </article>
                 </div>
                 <div class="col-sm-4"></div>
