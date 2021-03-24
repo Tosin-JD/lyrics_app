@@ -1,0 +1,10 @@
+from django.contrib import admin
+from .models import Lyric, Chorus, Verse, Bridge
+
+# Register your models here.
+admin.site.register(Bridge)
+admin.site.register(Chorus)
+admin.site.register(Lyric)
+admin.site.register(Verse)
+
+
