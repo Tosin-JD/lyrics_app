@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<style type="text/css">
+    .hght{
+        height: 100%;
+    }
+</style>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Profile</li>
+        </ol>
+    </nav>
+    
+<div class="container">
+{% if user.is_authenticated %}
+ <div class="mx-3 my-4 py-3">
+     <div class="row">
+     <div class="col-sm-1"></div>
+     <div class="col-sm-5">
+    <div class="card shadow">
+        <div class="card-body text-center">
+            <h5 class="text-primary">{{ user.username|title }}</h5>
+            <div class="row">
+                <div class="col-sm-6">
+                    <p class="text-success">{{ user.first_name|title }}</p>  
+                </div>
+                <div class="col-sm-6">
+                    <p class="text-danger">{{ user.last_name|title }}</p>  
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+     <div class="col-sm-6">
+    <div class="card hght shadow">
+        <div class="mx-3 my-3 px-3 py-3">
+            
+            <div class="">
+                <a class="btn btn-light my-3 mx-3" href="{% url 'lyrics:add' %}">Add New Lyric</a>
+                <a class="btn btn-primary my-3 mx-3" href="{% url 'lyrics:all' %}">Edit Existing Lyric</a>
+            </div>
+            
+        </div>
+    </div>
+    </div>
+</div>
+ </div>
+{% else %}
+    <div class="card">
+        <div class="card-body text-center">
+            <h3 class="text-danger">Please sign up or login to access this page.</h3>
+        </div>
+    </div>
+{% endif %}
+</div>
+
+
+{% endblock %}
+
+
+
+
+
+
+

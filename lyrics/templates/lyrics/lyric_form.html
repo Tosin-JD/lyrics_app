@@ -7,9 +7,22 @@
     <div class="mt-5">
         <section>
             <div class="row">
+                <div class="col-sm-6">
+                    <ol class="bg-dark py-2 px-2 mb-2">
+                        <li class="step-one active">
+                            Create a lyric by adding the title and song writer
+                        </li>
+                        <li class="step-two text-light">
+                            Complete the lyric by adding chorus, verses and bridge.
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-sm-6"></div>
+            </div>
+            <div class="row">
                 <div class="col-sm-2"></div>
                     <div class="col-sm-6">
-                        <div class="bg-light shadow">
+                        <div class="bg-dark shadow">
                             <form method="POST">
                                 {% csrf_token %}
 

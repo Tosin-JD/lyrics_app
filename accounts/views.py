@@ -15,9 +15,14 @@ class SignUp(generic.CreateView):
     success_url = reverse_lazy('accounts:login')
     
 
-class ProfilePage(generic.DetailView):
+class ProfilePage(generic.TemplateView):
     model = User
     template_name = 'accounts/profile.html'
+
+
+class TACPage(generic.TemplateView):
+    """View for terms and conditions"""
+    template_name = 'accounts/tac.html'
     
 
 

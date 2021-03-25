@@ -15,12 +15,12 @@
 
                             <div class="py-3 px-2">
                                 <div class="form-group">
-                                    Are you sure you want to delete <br><br>
-                                    {{ object }}?
+                                    <label>{{ form.label_tag }}</label>
+                                    {{ form }}
                                 </div>
 
-                                <input type="submit" value="Yes" class="btn btn-danger px-3 py-2 y-2">
-                                <a href="{% url 'lyrics:complete' object.slug %}" class="btn btn-light px-4 py-2 y-2">No</a>
+                                <input type="submit" value="Complete" class="btn btn-success px-3 py-2 y-2">
+                                <a href="{% url 'lyrics:complete' object.lyric.slug %}" class="btn btn-light px-4 py-2 y-2">Back</a>
                             </div>
 
                         </form>

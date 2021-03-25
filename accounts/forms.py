@@ -13,10 +13,12 @@ class UserForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
-        self.fields['username'].widget.attrs['class'] = 'form-control my-1'
-        self.fields['email'].widget.attrs['class'] = 'form-control my-1'
-        self.fields['first_name'].widget.attrs['class'] = 'form-control my-1'
-        self.fields['last_name'].widget.attrs['class'] = 'form-control my-1'
+        self.fields['username'].widget.attrs['class'] = 'form-control m-b1 bg-light'
+        self.fields['email'].widget.attrs['class'] = 'form-control mb-1 bg-light'
+        self.fields['first_name'].widget.attrs['class'] = 'form-control mb-1 bg-light'
+        self.fields['last_name'].widget.attrs['class'] = 'form-control mb-1 bg-light'
+        self.fields['password1'].widget.attrs['class'] = 'form-control mb-1 bg-light'
+        self.fields['password2'].widget.attrs['class'] = 'form-control mb-1 bg-light'
         
     class Meta:
         model = User

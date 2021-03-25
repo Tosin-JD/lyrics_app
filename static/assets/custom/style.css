@@ -1,3 +1,12 @@
 .navi-link{
     font-size: 1.2rem;
 }
+
+.text-yellow{
+    color: yellow!important;
+}
+
+.step-one, .step-two{
+    font-size: 1.5rem;
+}
+

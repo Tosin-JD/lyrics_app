@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+    
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+            <form action="{% url 'accounts:sign_up' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group px-3 py-3 mx-3 my-3 border shadow">
+                    <h4><center>Sign Up form</center></h4>
+                    <p>By registering, you agree to the 
+                        <a class="text-primary" href="{% url 'accounts:tac' %}">
+                            terms and conditions
+                        </a>
+                    </p>
+                    {% if form.errors %}
+                    {% for error in form.errors %}
+                      <div class="py-3 px-3 bg-light">
+                          <p class="text-danger">
+                              {{ error }}
+                          </p>
+                      </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% for item in form %}
+                        <div>
+                            <label>{{ item.label_tag }}</label>
+                            {{ item }}
+                        </div>
+                    {% endfor %}
+                    <!-- login link -->
+                <a class="text-success" href="{% url 'accounts:login' %}">Login Instead</a>
+                <br><br>
+                
+                <a class="text-primary" href="{% url 'accounts:tac' %}">Terms And Conditions</a>
+            
+                <input type="submit" class="btn btn-primary form-control my-3" value="Sign Up">
+                
+                
+                
+                </div>
+            </form> 
+            
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+
+
+{% endblock %}

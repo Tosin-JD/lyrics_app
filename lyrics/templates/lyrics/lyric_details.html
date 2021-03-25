@@ -23,14 +23,14 @@
                         {% if object.chorus_set.all %}
                             <h6 class="text-primary">Chorus</h6>
                             {% for chorus in object.chorus_set.all %}
-                                <p class="text-light">{{ chorus|linebreaks }}</p>
+                                <p class="text-light"><b>{{ chorus|linebreaks }}</b></p>
                             {% endfor %}
                         {% endif %}
 
                         {% if object.verse_set.all %}
-                            <h6 class="text-primary">Verse</h6>
                             {% for verse in object.verse_set.all %}
                                 {% if forloop.counter != 1 %}
+                                    <h6 class="text-primary">Verse ({{ forloop.counter }})</h6>
                                     <p class="text-light">{{ verse|linebreaks }}</p>
                                 {% endif %}
                             {% endfor %}
@@ -39,16 +39,27 @@
                         {% if object.bridge_set.all %}
                             <h6 class="text-primary">Bridge</h6>
                             {% for bridge in object.bridge_set.all %}
-                                <p class="text-light">{{ bridge|linebreaks }}</p>
+                                <p class="text-light"><em>{{ bridge|linebreaks }}</em></p>
                             {% endfor %}
                         {% endif %}
 
 
-                        <h5 class="text-secondary text-right"><em>{{ object.song_writer }}</em></h5>
+                        <h5 class="text-primary text-right">
+                             <span class="text-secondary">Written by: </span>
+                             <em>{{ object.song_writer }}</em>
+                        </h5>
                     </article>
                 </div>
                 <div class="col-sm-4"></div>
-                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                    <div class="mt-5">
+                        {% if user.is_authenticated %}
+                            <a class="btn btn-secondary text-primary" href="{% url 'lyrics:complete' object.slug %}">
+                                Edit Lyric
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
     </section>

@@ -5,17 +5,39 @@
 
 <div class="container">
     <section>
-        <div class="mt-3">
+        <div class="mt-5">
+            <div class="row">
+                <div class="col-sm-6">
+                  <ol class="bg-dark py-2 px-2 mb-2">
+                      <li class="step-one text-light">
+                          Create a lyric by adding the title and song writer
+                      </li>
+                      <li class="step-two active">
+                          Complete the lyric by adding chorus, verses and bridge.
+                      </li>
+                  </ol>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-sm-4">
                     <article class="text-left">
                         <h2 class="text-center">{{ object }}</h2>
 
                         {% if object.verse_set.all %}
-                        {% for verse in object.verse_set.all %}
+                            {% for verse in object.verse_set.all %}
                                 {% if forloop.counter == 1 %}
                                     <h6 class="text-primary">Verse ({{ forloop.counter }})</h6>
                                     <p class="text-light">{{ verse|linebreaks }}</p>
+                                    <div class="mt-4 bg-secondary">
+                                      <div class="py-1 px-1">
+                                          <a class="btn btn-small btn-success" href="{% url 'lyrics:edit-verse' verse.id %}">
+                                              Edit
+                                          </a>
+                                          <a class="btn btn-small btn-danger" href="{% url 'lyrics:delete-verse' verse.id %}">
+                                              Delete
+                                          </a>
+                                      </div>
+                                  </div>
                                 {% endif %}
                             {% endfor %}
                         {% endif %}
@@ -23,23 +45,54 @@
                         {% if object.chorus_set.all %}
                             <h6 class="text-primary">Chorus</h6>
                             {% for chorus in object.chorus_set.all %}
-                                <p class="text-light">{{ chorus|linebreaks }}</p>
+                                <p class="text-light"><b>{{ chorus|linebreaks }}</b></p>
+                                <div class="mt-4 bg-secondary">
+                                  <div class="py-1 px-1">
+                                      <a class="btn btn-small btn-success" href="{% url 'lyrics:edit-chorus' chorus.id %}">
+                                          Edit
+                                      </a>
+                                      <a class="btn btn-small btn-danger" href="{% url 'lyrics:delete-chorus' chorus.id %}">
+                                          Delete
+                                      </a>
+                                  </div>
+                              </div>
                             {% endfor %}
                         {% endif %}
 
                         {% if object.verse_set.all %}
-                            <h6 class="text-primary">Verse</h6>
+                            
                             {% for verse in object.verse_set.all %}
                                 {% if forloop.counter != 1 %}
+                                    <h6 class="text-primary">Verse ({{ forloop.counter }})</h6>
                                     <p class="text-light">{{ verse|linebreaks }}</p>
+                                    <div class="mt-4 bg-secondary">
+                                      <div class="py-1 px-1">
+                                          <a class="btn btn-small btn-success" href="{% url 'lyrics:edit-verse' verse.id %}">
+                                              Edit
+                                          </a>
+                                          <a class="btn btn-small btn-danger" href="{% url 'lyrics:delete-verse' verse.id %}">
+                                              Delete
+                                          </a>
+                                      </div>
+                                  </div>
                                 {% endif %}
                             {% endfor %}
                         {% endif %}
 
                         {% if object.bridge_set.all %}
-                            <h6 class="text-primary">Bridge</h6>
                             {% for bridge in object.bridge_set.all %}
-                                <p class="text-light">{{ bridge|linebreaks }}</p>
+                                <h6 class="text-primary">Bridge</h6>
+                                <p class="text-light"><em>{{ bridge|linebreaks }}</em></p>
+                                <div class="mt-4 bg-secondary">
+                                  <div class="py-1 px-1">
+                                      <a class="btn btn-small btn-success" href="{% url 'lyrics:edit-bridge' bridge.id %}">
+                                          Edit
+                                      </a>
+                                      <a class="btn btn-small btn-danger" href="{% url 'lyrics:delete-bridge' bridge.id %}">
+                                          Delete
+                                      </a>
+                                  </div>
+                              </div>
                             {% endfor %}
                         {% endif %}
 
@@ -95,18 +148,22 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-            <form action="" method="POST">
+        <form action="{% url 'lyrics:add-verse' lyric.slug %}" method="POST">
+          
+          <div class="modal-body">
+              {% csrf_token %}
                 <div class="form-group">
-                  <textarea class="form-control mb-1" name="text" id="" cols="20" rows="5"></textarea>
-                  <input class="btn btn-default" type="submit" value="add">
+                  <label>Verse</label>
+                  <textarea class="form-control bg-light mb-1" name="verse" id="" cols="30" rows="5"></textarea>
+                  <input class="btn btn-light" type="submit" value="Add">
                 </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+      </form>
       </div>
     </div>
   </div>
@@ -121,18 +178,22 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          <form action="" method="POST">
-              <div class="form-group">
-                <textarea class="form-control mb-1" name="text" id="" cols="30" rows="10"></textarea>
-                <input class="btn btn-default" type="submit" value="add">
-              </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+        <form action="{% url 'lyrics:add-chorus' lyric.slug %}" method="POST">
+          
+          <div class="modal-body">
+              {% csrf_token %}
+                <div class="form-group">
+                  <label>Chorus</label>
+                  <textarea class="form-control bg-light mb-1" name="chorus" id="" cols="30" rows="5"></textarea>
+                  <input class="btn btn-light" type="submit" value="Add">
+                </div>
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+      </form>
       </div>
     </div>
   </div>
@@ -148,13 +209,22 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+        <form action="{% url 'lyrics:add-bridge' lyric.slug %}" method="POST">
+          
+          <div class="modal-body">
+              {% csrf_token %}
+                <div class="form-group">
+                  <label>Bridge</label>
+                  <textarea class="form-control bg-light mb-1" name="bridge" id="" cols="30" rows="5"></textarea>
+                  <input class="btn btn-light" type="submit" value="Add">
+                </div>
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+      </form>
       </div>
     </div>
   </div>
