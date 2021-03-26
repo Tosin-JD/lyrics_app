@@ -21,7 +21,9 @@
                 
                 
                 {% if form.errors %}
-                    <p>Your username and password didn't match. Please try again.</p>
+                    <div class="error">
+                        Your username and password didn't match. Please try again.
+                    </div>
                 {% endif %}
         
         {% if next %}
@@ -38,7 +40,7 @@
         <div class="form-group">
             <div class="px-2 py-2">
                 <h3 class="text-primary">Login</h3>
-                <p class="text-info">Enter your username and password to login</p>
+                <p class="text-white">Enter your username and password to login</p>
             </div>
             <label>Usename</label><br>
             <input type="text" name="username" class="form-control my-3" placeholder="Username">

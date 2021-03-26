@@ -11,8 +11,12 @@
     <!-- bootswatch -->
     <link rel="stylesheet" href="{% static 'assets/libraries/bootswatch/bootstrap.min.css' %}">
     
+    <!-- animation css -->
+    <link rel="stylesheet" href="{% static 'assets/custom/css/animation_style.css' %}">
+
+    
     <!-- custom css -->
-    <link rel="stylesheet" href="{% static 'assets/custom/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/custom/css/style.css' %}">
 
 </head>
 <body>
@@ -58,7 +62,12 @@
 
           </ul>
           <form action="{% url 'search:results' %}" class="form-inline my-2 my-lg-0">
-            <input name="q" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <div>
+              <div class="search-dropdown">
+                <input id="search-input" name="q" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <div id="search-suggestion"></div>
+              </div>
+            </div>
             <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
           </form>
         </div>
@@ -69,5 +78,9 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script src="{% static 'assets/custom/js/app.js' %}"></script>
+<script src="{% static 'assets/custom/js/api_request.js' %}"></script>
+
 </body>
 </html>

@@ -23,7 +23,7 @@
                         {% if object.chorus_set.all %}
                             <h6 class="text-primary">Chorus</h6>
                             {% for chorus in object.chorus_set.all %}
-                                <p class="text-light"><b>{{ chorus|linebreaks }}</b></p>
+                                <div class="text-yellow"><b>{{ chorus|linebreaks }}</b></div>
                             {% endfor %}
                         {% endif %}
 

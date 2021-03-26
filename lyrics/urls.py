@@ -10,7 +10,7 @@ urlpatterns = [
        path('complete/<slug>/', views.SecondCreateLyric.as_view(), name='complete'),
        path('delete/<slug>/', views.DeleteLyric.as_view(), name='delete'),
        path('single/<slug>/', views.LyricDetail.as_view(), name="single"),
-       path('lyric-json/', views.lyric_json, name="json"),
+       path('json-api/', views.lyric_json, name="json"),
 
        path('add-chorus/to/<slug>/', views.CreateChorus.as_view(), name='add-chorus'),
        path('add-verse/to/<slug>/', views.CreateVerse.as_view(), name='add-verse'),

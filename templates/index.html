@@ -1,9 +1,82 @@
 {% extends  'base.html' %}
 
-
+<link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
 {% block content %}
 
-<h3>Index Page</h3>
+<div class="container">
+    <section>
+        <div class="mt-3">
+            <div class="row">
+                <div class="col-sm-4">
+                    {% for lyric in latest_lyrics %}
+                    <article class="text-left bg-secondary px-3">
+                        <h2 class="text-center">{{ lyric }}</h2>
+
+                        {% if lyric.verse_set.all %}
+                        {% for verse in lyric.verse_set.all %}
+                                {% if forloop.counter == 1 %}
+                                    <h6 class="text-primary">Verse ({{ forloop.counter }})</h6>
+                                    <p class="text-light">{{ verse|linebreaks }}</p>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+
+                        {% if lyric.chorus_set.all %}
+                            <h6 class="text-primary">Chorus</h6>
+                            {% for chorus in lyric.chorus_set.all %}
+                                <div class="text-yellow"><b>{{ chorus|linebreaks }}</b></div>
+                            {% endfor %}
+                        {% endif %}
+
+                        {% if lyric.verse_set.all %}
+                            {% for verse in lyric.verse_set.all %}
+                                {% if forloop.counter != 1 %}
+                                    <h6 class="text-primary">Verse ({{ forloop.counter }})</h6>
+                                    <p class="text-light">{{ verse|linebreaks }}</p>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+
+                        {% if lyric.bridge_set.all %}
+                            <h6 class="text-primary">Bridge</h6>
+                            {% for bridge in lyric.bridge_set.all %}
+                                <p class="text-light"><em>{{ bridge|linebreaks }}</em></p>
+                            {% endfor %}
+                        {% endif %}
+
+
+                        <h5 class="text-primary text-right">
+                             <span class="text-primary">Written by: </span>
+                             <em>{{ lyric.song_writer }}</em>
+                        </h5>
+                    </article>
+                    {% endfor %}
+                </div>
+                <div class="col-sm-6">
+                    <div class="anim-container mt-5">
+                        <h1>God is
+                            <span
+                               class="txt-rotate"
+                               data-period="2000"
+                               data-rotate='[ "good.", "kind.", "patient.", "not envious.",
+                                "love.", "our Saviour.", "hope for years to come", 
+                               "our Father!" ]'></span>
+                          </h1>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="mt-5">
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+
 
 {% endblock %}
 

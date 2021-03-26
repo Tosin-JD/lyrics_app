@@ -21,9 +21,9 @@
                     {% if form.errors %}
                     {% for error in form.errors %}
                       <div class="py-3 px-3 bg-light">
-                          <p class="text-danger">
+                          <div class="error">
                               {{ error }}
-                          </p>
+                          </div>
                       </div>
                     {% endfor %}
                     {% endif %}

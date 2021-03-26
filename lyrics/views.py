@@ -12,6 +12,11 @@ class HomePage(generic.TemplateView):
     model = Lyric
     template_name = 'index.html'
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(HomePage, self).get_context_data(*args, *kwargs)
+        context['latest_lyrics'] = Lyric.objects.all()[:3]
+        return context
+
 
 class AboutPage(generic.TemplateView):
     template_name = 'about.html'
@@ -48,7 +53,14 @@ class DeleteLyric(generic.DeleteView):
     
 
 def lyric_json(request):
-    data = {'result': list(Lyric.objects.all())}
+    lyrics = Lyric.objects.all()
+    choruses = Chorus.objects.all()
+    verses = Verse.objects.all()
+    bridges = Bridge.objects.all()
+    data = {'lyrics': list(lyrics.values('title', 'song_writer', 'slug'))}
+    data['choruses'] = list(choruses.values('chorus'))
+    data['verses'] = list(verses.values('verse'))
+    data['bridges'] = list(bridges.values('bridge'))
     return JsonResponse(data)
 
 

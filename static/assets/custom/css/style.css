@@ -1,0 +1,33 @@
+.navi-link{
+    font-size: 1.2rem;
+}
+
+.text-yellow{
+    color: yellow!important;
+}
+
+.step-one, .step-two{
+    font-size: 1.5rem;
+}
+
+.error{
+	background-color: aquamarine;
+	color: teal;
+	padding: 12px;
+	border-radius: 2px;
+	border: solid 1px #bff2f2;
+}
+
+.search-dropdown{
+	position: relative;
+	overflow: none;
+}
+
+#search-suggestion{
+	position: absolute;
+	top: 50px;
+	z-index: 2;
+	border-radius: 5px;
+	width: 100%;
+}
+
