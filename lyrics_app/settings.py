@@ -54,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'lyrics_app.urls'
@@ -87,13 +88,27 @@ WSGI_APPLICATION = 'lyrics_app.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': os.environ.get("DB_NAME"),
+#         'USER': 'postgres.gncuhsasyesltvxgzdun',
+#         'PASSWORD': '$@&~-Quhr~4k5Yt',
+#         # 'PASSWORD': '$@&~-Quhr~4k5Yt',
+#         'HOST': 'aws-0-us-west-1.pooler.supabase.com',
+#         # 'HOST': os.environ.get("DATAB_HOST"),
+#         'PORT': '6543',
+#         # 'PORT': os.environ.get("DB_PORT"),
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.environ.get("DB_NAME"),
-        'USER': os.environ.get("DB_USER"),
-        'PASSWORD': os.environ.get("DB_PASSWORD"),
-        'HOST': os.environ.get("DB_HOST"),
+        'USER': os.environ.get("DB_NAME"),
+        'PASSWORD': os.environ.get("DB_NAME"),
+        'HOST': os.environ.get("DATAB_HOST"),
         'PORT': os.environ.get("DB_PORT"),
     }
 }
